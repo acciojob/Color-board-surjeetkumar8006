@@ -3,11 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <title>Color Board</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+    }
+
+    .container {
+      width: 1000px;
+    }
+
+    .square {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin: 2px;
+      background-color: rgb(29, 29, 29);
+      transition: background-color 1s ease;
+    }
+  </style>
 </head>
+
 <body>
   <div class="container" id="container"></div>
 
-  <script src="script.js"></script>
+  <script>
+    const container = document.getElementById("container");
+    const TOTAL = 800;
+
+    const colors = [
+      "rgb(231, 76, 60)",
+      "rgb(52, 152, 219)",
+      "rgb(46, 204, 113)",
+      "rgb(241, 196, 15)",
+      "rgb(155, 89, 182)"
+    ];
+
+    function randomColor() {
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    for (let i = 0; i < TOTAL; i++) {
+      const square = document.createElement("div");
+      square.className = "square";
+
+      square.addEventListener("mouseover", () => {
+        square.style.backgroundColor = randomColor();
+      });
+
+      square.addEventListener("mouseout", () => {
+        square.style.backgroundColor = "rgb(29, 29, 29)";
+      });
+
+      container.appendChild(square);
+    }
+  </script>
 </body>
 </html>
